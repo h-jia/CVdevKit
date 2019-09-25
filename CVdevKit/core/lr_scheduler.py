@@ -53,7 +53,9 @@ class LRScheduler(object):
         self.optimizer_ad = optimizer_ad
 
         self.base_lr = args.base_lr if hasattr(args,'base_lr')  else 0.1
+        self.ad_lr = args.ad_lr if hasattr(args,'base_lr')  else 0.01
         self.learning_rate = self.base_lr
+        self.ad_learning_rate = self.ad_lr
         self.niters = niters
 
         self.step = [int(i) for i in args.step.split(',')] if hasattr(args,'step')  else [30, 60, 90]
@@ -92,5 +94,5 @@ class LRScheduler(object):
 
         for i, param_group in enumerate(self.optimizer.param_groups):
             param_group['lr'] = self.learning_rate
-#         for i, param_group in enumerate(self.optimizer.param_groups):
-#             param_group['lr'] = self.learning_rate
+        for i, param_group in enumerate(self.optimizer_ad.param_groups):
+            param_group['ad_lr'] = self.ad_learning_rate
