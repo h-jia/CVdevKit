@@ -41,7 +41,7 @@ class LRScheduler(object):
         Modes for the warmup stage.
         Currently it supports 'linear' and 'constant'.
     """
-    def __init__(self, optimizer, niters, args):
+    def __init__(self, optimizer, optimizer_ad, niters, args):
         super(LRScheduler, self).__init__()
 
         self.mode = args.lr_mode
@@ -50,6 +50,7 @@ class LRScheduler(object):
         assert(self.warmup_mode in ['linear', 'constant'])
 
         self.optimizer = optimizer
+        self.optimizer_ad = optimizer_ad
 
         self.base_lr = args.base_lr if hasattr(args,'base_lr')  else 0.1
         self.learning_rate = self.base_lr
@@ -91,3 +92,5 @@ class LRScheduler(object):
 
         for i, param_group in enumerate(self.optimizer.param_groups):
             param_group['lr'] = self.learning_rate
+#         for i, param_group in enumerate(self.optimizer.param_groups):
+#             param_group['lr'] = self.learning_rate
