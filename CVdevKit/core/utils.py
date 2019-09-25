@@ -14,7 +14,7 @@ def save_checkpoint(model_dir, state, is_best):
         shutil.copyfile(path, os.path.join(model_dir, 'model-best.pth'))
 
 
-def load_state(model_dir, model, optimizer=None):
+def load_state(model_dir, model, optimizer=None, optimizer_ad=None):
     if not os.path.exists(model_dir + '/checkpoint'):
         print("=> no checkpoint found at '{}', train from scratch".format(model_dir))
         return 0, 0
@@ -30,12 +30,13 @@ def load_state(model_dir, model, optimizer=None):
             print('missing keys from checkpoint {}: {}'.format(model_dir, k))
 
         print("=> loaded model from checkpoint '{}'".format(model_dir))
-        if optimizer != None:
+        if optimizer != None && optimizer_ad != None:
             best_prec1 = 0
             if 'best_prec1' in checkpoint.keys():
                 best_prec1 = checkpoint['best_prec1']
             start_epoch = checkpoint['epoch']
             optimizer.load_state_dict(checkpoint['optimizer'])
+            optimizer_ad.load_state_dict(checkpoint['optimizer_ad'])
             print("=> also loaded optimizer from checkpoint '{}' (epoch {})"
                   .format(model_dir, start_epoch))
             return best_prec1, start_epoch
