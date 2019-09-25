@@ -30,7 +30,7 @@ def load_state(model_dir, model, optimizer=None, optimizer_ad=None):
             print('missing keys from checkpoint {}: {}'.format(model_dir, k))
 
         print("=> loaded model from checkpoint '{}'".format(model_dir))
-        if optimizer != None && optimizer_ad != None:
+        if optimizer != None and optimizer_ad != None:
             best_prec1 = 0
             if 'best_prec1' in checkpoint.keys():
                 best_prec1 = checkpoint['best_prec1']
