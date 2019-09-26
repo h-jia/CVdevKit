@@ -9,7 +9,7 @@
 ## Installation
  install from source
 ```
-git clone https://github.com/h-jia/DevKit-GAN
-cd CVdevKit
+git clone https://github.com/h-jia/DevKit-GAN.git
+cd  DevKit-GAN
 pip install .
 ```
