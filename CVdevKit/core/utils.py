@@ -39,6 +39,8 @@ def load_state(model_dir, model, optimizer=None, optimizer_ad=None):
             optimizer_ad.load_state_dict(checkpoint['optimizer_ad'])
             print("=> also loaded optimizer from checkpoint '{}' (epoch {})"
                   .format(model_dir, start_epoch))
+            print("=> and also loaded optimizer_ad from checkpoint '{}' (epoch {})"
+                  .format(model_dir, start_epoch))
             return best_prec1, start_epoch
 
 
