@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 install_requires = ['torch>=0.4.0', 'Pillow']
 
 setup(
-    name='CVdevKit',
+    name='DevKit-GAN',
     version='1.0.0',
     description='A development kit for GAN',
     url='https://github.com/JiaminRen/CVdevKit.git',
